@@ -23,6 +23,8 @@ public class PlayerShootBubbles : MonoBehaviour {
         {
             Transform bubbleObject = Instantiate(bubblePrefab, transform.position, Quaternion.identity) as Transform;
             bubbleObject.name = bubblePrefab.name;
+            Bubble bubble = bubbleObject.GetComponent<Bubble>();
+            bubble.Initialize(new Vector3(1.0f, 0.0f, 0.0f));
         }
 
         if (animator)

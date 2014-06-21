@@ -12,9 +12,14 @@ public class Bubble : MonoBehaviour
 	// Use this for initialization
 	void Start () 
     {
-        CreateStateMachine();
-        TransitionTo(Shoot);
 	}
+
+    public void Initialize(Vector3 dir)
+    {
+        CreateStateMachine();
+        _shootDirection = dir;
+        TransitionTo(Shoot);
+    }
 	
 	// Update is called once per frame
 	void Update() 
@@ -48,7 +53,6 @@ public class Bubble : MonoBehaviour
     private void RunShoot(float deltaTime)
     {
         Move(_shootDirection, SHOOT_SPEED, deltaTime);
-
         if (IsAnimationCompleted("Shoot"))
         {
             TransitionTo(Rise);
