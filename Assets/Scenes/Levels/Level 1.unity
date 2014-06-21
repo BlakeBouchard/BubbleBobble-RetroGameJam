@@ -1116,6 +1116,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bubblePrefab: {fileID: 0}
   timeBetweenShots: .300000012
+  animator: {fileID: 0}
 --- !u!114 &661653924
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1132,6 +1133,7 @@ MonoBehaviour:
   horizontalVelocity: 10
   jumpForce: 2000
   jumpVelocity: 15
+  animator: {fileID: 0}
   baseJumpTime: .25
   forceBased: 0
 --- !u!50 &661653925

@@ -19,6 +19,8 @@ public class PlayerMovement : MonoBehaviour {
 
     public bool forceBased = false;
 
+    private bool facingLeft = false;
+
     DetectSurface surfaceDetector;
 
 	// Use this for initialization
@@ -94,7 +96,7 @@ public class PlayerMovement : MonoBehaviour {
         // Update the animator
         if (animator)
         {
-            animator.SetFloat("VelocityX", rigidbody2D.velocity.x);
+            animator.SetBool("Walking", horizontalAxis != 0);
             animator.SetFloat("VelocityY", rigidbody2D.velocity.y);
         }
     }
