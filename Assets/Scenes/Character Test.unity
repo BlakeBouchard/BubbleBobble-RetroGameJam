@@ -233,6 +233,8 @@ MonoBehaviour:
   horizontalAcceleration: 50
   horizontalVelocity: 10
   jumpForce: 2000
+  jumpVelocity: 10
+  baseJumpTime: .25
   forceBased: 0
 --- !u!1 &494421247
 GameObject:
@@ -360,6 +362,10 @@ Prefab:
     - target: {fileID: 400000, guid: acd3dc9de33fc2f4b82f3c446c922551, type: 2}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: acd3dc9de33fc2f4b82f3c446c922551, type: 2}
+      propertyPath: baseJumpTime
+      value: .25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: acd3dc9de33fc2f4b82f3c446c922551, type: 2}
