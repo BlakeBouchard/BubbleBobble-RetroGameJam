@@ -43,7 +43,7 @@ public class PlayerMovement : MonoBehaviour {
         //Debug.Log(horizontalAxis);
         if (Input.GetButtonDown("Jump") && !jumpWanted)
         {
-            Debug.Log("Jump key pressed");
+            //Debug.Log("Jump key pressed");
             jumpWanted = true;
         }
 	}
@@ -63,7 +63,7 @@ public class PlayerMovement : MonoBehaviour {
         {
             if (onGround)
             {
-                Debug.Log("Character is on ground, so jump");
+                //Debug.Log("Character is on ground, so jump");
                 rigidbody2D.AddForce(new Vector2(0, jumpForce));
                 onGround = false;
             }
