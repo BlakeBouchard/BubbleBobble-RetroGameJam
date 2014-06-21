@@ -56,6 +56,9 @@ public class PlayerMovement : MonoBehaviour {
             rigidbody2D.velocity = new Vector2(horizontalAxis * horizontalVelocity, 0);
         }
 
-        if ()
+        if (jumpWanted)
+        {
+            jumpWanted = false;
+        }
     }
 }
