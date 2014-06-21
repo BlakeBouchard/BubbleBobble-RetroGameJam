@@ -18,7 +18,6 @@ public class PlayerShootBubbles : MonoBehaviour {
     // Create a bubble object at the character
     private void ShootBubble()
     {
-        Debug.Log("Shooting bubble");
         if (bubblePrefab)
         {
             Transform bubbleObject = Instantiate(bubblePrefab, transform.position, Quaternion.identity) as Transform;

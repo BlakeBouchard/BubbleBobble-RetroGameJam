@@ -1,12 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
 using core;
+using System.Collections.Generic;
 
 public class Bubble : MonoBehaviour 
 {
-    public static void ShootBubble(Vector3 direction)
+    void OnTriggerEnter2D(Collider2D collider)
     {
-
+        switch (collider.gameObject.tag)
+        {
+            case Tags.Ground:
+                Debug.Log("Collide Ground");
+                _groundColliders.Add(collider);
+                break;
+        }
     }
 
 	// Use this for initialization
@@ -31,6 +38,9 @@ public class Bubble : MonoBehaviour
         {
             _currentState.Run(Time.deltaTime);
         }
+
+        _groundColliders.Clear();
+        _popDetector.Clear();
 	}
 
     #region StatemachineAPI
@@ -53,7 +63,7 @@ public class Bubble : MonoBehaviour
     private void RunShoot(float deltaTime)
     {
         Move(_shootDirection, SHOOT_SPEED, deltaTime);
-        if (IsAnimationCompleted("Shoot"))
+        if (IsAnimationCompleted("Shoot") || _groundColliders.Count > 0)
         {
             TransitionTo(Rise);
         }
@@ -69,7 +79,11 @@ public class Bubble : MonoBehaviour
         Move(Vector3.up, RISE_SPEED, deltaTime);
         ClampPositionY(MAX_RISE_Y);
         _riseTimer += deltaTime;
-        if (_riseTimer > RISE_TIME)
+        if (DetectPop())
+        {
+            TransitionTo(Pop);
+        }
+        else if (_riseTimer > RISE_TIME)
         {
             TransitionTo(Shake);
         }
@@ -93,7 +107,11 @@ public class Bubble : MonoBehaviour
     {
         ApplyShake();
         _shakeTimer += deltaTime;
-        if (_shakeTimer > RISE_TIME)
+        if (DetectPop())
+        {
+            TransitionTo(Pop);
+        }
+        else if (_shakeTimer > RISE_TIME)
         {
             TransitionTo(AboutTopPop);
         }
@@ -108,7 +126,7 @@ public class Bubble : MonoBehaviour
     {
         ApplyShake();
         _aboutToPopTimer += deltaTime;
-        if (_aboutToPopTimer > RISE_TIME)
+        if (DetectPop() || _aboutToPopTimer > RISE_TIME)
         {
             TransitionTo(Pop);
         }
@@ -182,6 +200,11 @@ public class Bubble : MonoBehaviour
         transform.position = position;
     }
 
+    private bool DetectPop()
+    {
+        return _popDetector.ShouldPop;
+    }
+
     [SerializeField]
     private Shaker _shaker;
     [SerializeField]
@@ -190,6 +213,8 @@ public class Bubble : MonoBehaviour
     private SpriteRenderer _renderer;
     [SerializeField]
     private Animator _animator;
+    [SerializeField]
+    private BubblePopDetector _popDetector;
 
     [SerializeField]
     private float _currentAnimationTime;
@@ -201,6 +226,8 @@ public class Bubble : MonoBehaviour
     private float _riseTimer;
     private float _shakeTimer;
     private float _aboutToPopTimer;
+    private List<Collider2D> _playerColliders = new List<Collider2D>();
+    private List<Collider2D> _groundColliders = new List<Collider2D>();
 
     // Constants
     [SerializeField]

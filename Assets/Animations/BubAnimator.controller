@@ -5,7 +5,7 @@ AnimatorController:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: New Animator Controller
+  m_Name: BubAnimator
   serializedVersion: 2
   m_AnimatorParameters:
   - m_Name: Sliding
@@ -611,14 +611,6 @@ StateMachine:
   m_ChildStateMachinePosition: []
   m_OrderedTransitions:
     data:
-      first: {fileID: 110253244}
-      second:
-      - {fileID: 110195561}
-      - {fileID: 110118250}
-    data:
-      first: {fileID: 110221260}
-      second: []
-    data:
       first: {fileID: 0}
       second:
       - {fileID: 110129141}
@@ -630,20 +622,23 @@ StateMachine:
       - {fileID: 110121001}
       - {fileID: 110186544}
     data:
+      first: {fileID: 110210758}
+      second: []
+    data:
+      first: {fileID: 110221260}
+      second: []
+    data:
+      first: {fileID: 110238827}
+      second:
+      - {fileID: 110154257}
+      - {fileID: 110197199}
+      - {fileID: 110154907}
+    data:
       first: {fileID: 110248690}
       second:
       - {fileID: 110155713}
       - {fileID: 110121727}
       - {fileID: 110185183}
-    data:
-      first: {fileID: 110276559}
-      second:
-      - {fileID: 110194789}
-      - {fileID: 110135594}
-      - {fileID: 110198661}
-    data:
-      first: {fileID: 110210758}
-      second: []
     data:
       first: {fileID: 110249986}
       second:
@@ -653,11 +648,16 @@ StateMachine:
       - {fileID: 110120622}
       - {fileID: 110129619}
     data:
-      first: {fileID: 110238827}
+      first: {fileID: 110253244}
       second:
-      - {fileID: 110154257}
-      - {fileID: 110197199}
-      - {fileID: 110154907}
+      - {fileID: 110195561}
+      - {fileID: 110118250}
+    data:
+      first: {fileID: 110276559}
+      second:
+      - {fileID: 110194789}
+      - {fileID: 110135594}
+      - {fileID: 110198661}
   m_MotionSetCount: 1
   m_AnyStatePosition: {x: 468, y: 0, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
