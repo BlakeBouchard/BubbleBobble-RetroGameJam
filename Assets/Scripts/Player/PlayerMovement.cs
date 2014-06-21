@@ -7,7 +7,9 @@ public class PlayerMovement : MonoBehaviour {
     public float horizontalVelocity = 5.0f;
     private float horizontalAxis;
 
-    private bool jumpWanted;
+    public float jumpForce = 100.0f;
+
+    private bool jumpWanted = false;
     private bool onGround = false;
 
     public bool forceBased = false;
@@ -39,8 +41,9 @@ public class PlayerMovement : MonoBehaviour {
         // Grab horizontal control from Unity
         horizontalAxis = Input.GetAxis("Horizontal");
         //Debug.Log(horizontalAxis);
-        if (!jumpWanted && Input.GetKeyDown("Jump"))
+        if (Input.GetButtonDown("Jump") && !jumpWanted)
         {
+            Debug.Log("Jump key pressed");
             jumpWanted = true;
         }
 	}
@@ -58,6 +61,12 @@ public class PlayerMovement : MonoBehaviour {
 
         if (jumpWanted)
         {
+            if (onGround)
+            {
+                Debug.Log("Character is on ground, so jump");
+                rigidbody2D.AddForce(new Vector2(0, jumpForce));
+                onGround = false;
+            }
             jumpWanted = false;
         }
     }
