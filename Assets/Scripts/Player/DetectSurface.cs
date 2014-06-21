@@ -20,7 +20,7 @@ public class DetectSurface : MonoBehaviour {
     {
         switch (collider.tag)
         {
-            case "Ground":
+            case Tags.Ground:
                 if (!onGround)
                 {
                     onGround = true;

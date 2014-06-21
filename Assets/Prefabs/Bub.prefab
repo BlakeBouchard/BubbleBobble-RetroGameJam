@@ -184,6 +184,7 @@ MonoBehaviour:
   bubblePrefab: {fileID: 400000, guid: 25cd7cb40a29fe04cbe051984b2bb36b, type: 2}
   timeBetweenShots: .300000012
   animator: {fileID: 0}
+  _movement: {fileID: 11400000}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
