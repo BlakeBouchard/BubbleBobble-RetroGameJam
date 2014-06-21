@@ -142,7 +142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90d4d1b79c4ea9847b4c0bcfd580376c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bubblePrefab: {fileID: 0}
+  bubblePrefab: {fileID: 400000, guid: 25cd7cb40a29fe04cbe051984b2bb36b, type: 2}
   timeBetweenShots: .300000012
   animator: {fileID: 0}
 --- !u!114 &11400004

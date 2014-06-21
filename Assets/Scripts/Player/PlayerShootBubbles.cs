@@ -21,7 +21,7 @@ public class PlayerShootBubbles : MonoBehaviour {
         Debug.Log("Shooting bubble");
         if (bubblePrefab)
         {
-            Transform bubbleObject = Instantiate(bubblePrefab) as Transform;
+            Transform bubbleObject = Instantiate(bubblePrefab, transform.position, Quaternion.identity) as Transform;
             bubbleObject.name = bubblePrefab.name;
         }
 
