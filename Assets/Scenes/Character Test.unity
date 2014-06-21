@@ -250,7 +250,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bubblePrefab: {fileID: 0}
-  timeBetweenShots: .0199999996
+  timeBetweenShots: .300000012
 --- !u!1 &494421247
 GameObject:
   m_ObjectHideFlags: 0
@@ -339,7 +339,7 @@ Transform:
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 100000, guid: 11ad3522ed647c64f9f435e87328c196, type: 2}
-  m_PrefabInternal: {fileID: 1977603629}
+  m_PrefabInternal: {fileID: 825942027}
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 603339509}
@@ -356,13 +356,13 @@ AudioSource:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 8200000, guid: 11ad3522ed647c64f9f435e87328c196,
     type: 2}
-  m_PrefabInternal: {fileID: 1977603629}
+  m_PrefabInternal: {fileID: 825942027}
   m_GameObject: {fileID: 603339507}
   m_Enabled: 1
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: 57585ddcb16ce7944af7ddbc3ed12de1, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: .5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -414,7 +414,7 @@ AudioSource:
 Transform:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 400000, guid: 11ad3522ed647c64f9f435e87328c196, type: 2}
-  m_PrefabInternal: {fileID: 1977603629}
+  m_PrefabInternal: {fileID: 825942027}
   m_GameObject: {fileID: 603339507}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -465,12 +465,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: acd3dc9de33fc2f4b82f3c446c922551, type: 2}
+      propertyPath: timeBetweenShots
+      value: .300000012
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: acd3dc9de33fc2f4b82f3c446c922551, type: 2}
   m_RootGameObject: {fileID: 468448304}
   m_IsPrefabParent: 0
   m_IsExploded: 1
---- !u!1001 &1977603629
+--- !u!1001 &825942027
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
