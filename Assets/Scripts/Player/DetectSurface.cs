@@ -3,7 +3,7 @@ using System.Collections;
 
 public class DetectSurface : MonoBehaviour {
     
-    private bool onGround = false;
+    public bool onGround = false;
 
 	// Use this for initialization
 	void Start()
@@ -33,7 +33,7 @@ public class DetectSurface : MonoBehaviour {
     {
         switch (collider.tag)
         {
-            case Tags.Ground:
+            case "Ground":
                 if (!onGround)
                 {
                     onGround = true;
