@@ -13,7 +13,7 @@ public class Bubble : MonoBehaviour
 	void Start () 
     {
         CreateStateMachine();
-        BeginAboutToPopState();
+        TransitionTo(AboutTopPop);
 	}
 	
 	// Update is called once per frame
@@ -39,6 +39,11 @@ public class Bubble : MonoBehaviour
 
     #region Statemachine
     private void BeginShot()
+    {
+
+    }
+
+    private void ShotState(float deltaTime)
     {
 
     }
