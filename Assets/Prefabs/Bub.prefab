@@ -12,6 +12,7 @@ GameObject:
   - 61: {fileID: 6100000}
   - 50: {fileID: 5000000}
   - 114: {fileID: 11400000}
+  - 114: {fileID: 11400002}
   m_Layer: 0
   m_Name: Bub
   m_TagString: Untagged
@@ -74,6 +75,19 @@ MonoBehaviour:
   jumpVelocity: 15
   baseJumpTime: .25
   forceBased: 0
+--- !u!114 &11400002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90d4d1b79c4ea9847b4c0bcfd580376c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bubblePrefab: {fileID: 0}
+  timeBetweenShots: .0199999996
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
