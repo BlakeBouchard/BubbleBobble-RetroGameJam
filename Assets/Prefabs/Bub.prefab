@@ -9,10 +9,10 @@ GameObject:
   m_Component:
   - 4: {fileID: 400000}
   - 212: {fileID: 21200000}
-  - 61: {fileID: 6100000}
   - 50: {fileID: 5000000}
   - 114: {fileID: 11400000}
   - 114: {fileID: 11400002}
+  - 60: {fileID: 6000000}
   m_Layer: 0
   m_Name: Bub
   m_TagString: Untagged
@@ -44,7 +44,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.05199838, y: -1.78702533, z: 0}
+  m_LocalPosition: {x: .0915771127, y: -1.79465008, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400002}
@@ -88,8 +88,8 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_Radius: .0399999991
   m_Center: {x: 0, y: 0}
---- !u!61 &6100000
-BoxCollider2D:
+--- !u!60 &6000000
+PolygonCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -97,8 +97,22 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Size: {x: .5, y: .569999993}
-  m_Center: {x: 0, y: 0}
+  m_Poly:
+    m_Paths:
+    - - {x: -.0138569921, y: .288811564}
+      - {x: -.0733182281, y: .197331309}
+      - {x: -.181883186, y: .18544817}
+      - {x: -.15851967, y: .0906949043}
+      - {x: -.230941609, y: .0463070869}
+      - {x: -.168825299, y: -.0227922201}
+      - {x: -.230143517, y: -.0449482203}
+      - {x: -.173885286, y: -.117702007}
+      - {x: -.22434552, y: -.133358836}
+      - {x: -.25, y: -.284999996}
+      - {x: .25, y: -.284999996}
+      - {x: .230941594, y: -.16714716}
+      - {x: .230941594, y: .0359416008}
+      - {x: .1728248, y: .145941615}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -114,6 +128,7 @@ MonoBehaviour:
   horizontalVelocity: 10
   jumpForce: 2000
   jumpVelocity: 15
+  animator: {fileID: 0}
   baseJumpTime: .25
   forceBased: 0
 --- !u!114 &11400002
@@ -129,6 +144,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bubblePrefab: {fileID: 0}
   timeBetweenShots: .300000012
+  animator: {fileID: 0}
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
