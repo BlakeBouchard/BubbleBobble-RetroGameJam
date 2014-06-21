@@ -10,7 +10,8 @@ public class Teleporter : MonoBehaviour {
 	// Use this for initialization
 	void Start()
     {
-        if (name == "Bottom Teleporter") {
+        if (name == "Bottom Teleporter")
+        {
             otherTeleporter = GameObject.Find("Top Teleporter");
         }
         else
@@ -21,9 +22,9 @@ public class Teleporter : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        Vector3 colliderPosition = collider.transform.position;
+        Vector3 colliderPosition = collider.transform.root.position;
         colliderPosition.y = otherTeleporter.transform.position.y + teleportOffset;
-        collider.transform.position = colliderPosition;
+        collider.transform.root.position = colliderPosition;
     }
 	
 	// Update is called once per frame
