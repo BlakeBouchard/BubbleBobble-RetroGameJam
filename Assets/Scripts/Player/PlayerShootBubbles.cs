@@ -7,6 +7,8 @@ public class PlayerShootBubbles : MonoBehaviour {
     public float timeBetweenShots = 0.02f;
     private float timeUntilNextShot = 0;
 
+    public Animator animator;
+
 	// Use this for initialization
 	void Start()
     {
@@ -21,6 +23,11 @@ public class PlayerShootBubbles : MonoBehaviour {
         {
             Transform bubbleObject = Instantiate(bubblePrefab) as Transform;
             bubbleObject.name = bubblePrefab.name;
+        }
+
+        if (animator)
+        {
+            animator.SetTrigger("Shoot");
         }
     }
 	

@@ -10,35 +10,29 @@ public class PlayerMovement : MonoBehaviour {
     public float jumpForce = 100.0f;
     public float jumpVelocity = 10.0f;
 
+    public Animator animator;
+
     private bool jumpWanted = false;
-    private bool onGround = false;
     private bool jumpStarted = false;
     public float baseJumpTime = 1.0f;
     private float jumpTimeLeft = 0;
 
     public bool forceBased = false;
 
+    private bool facingLeft = false;
+
+    DetectSurface surfaceDetector;
+
 	// Use this for initialization
 	void Start()
     {
-	
+        surfaceDetector = GetComponentInChildren<DetectSurface>();
+        if (!surfaceDetector)
+        {
+            Debug.LogError("ERROR! Could not find surface detection object in children!");
+        }
 	}
 
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        switch (collision.collider.tag)
-        {
-            case "Ground":
-                if (!onGround)
-                {
-                    onGround = true;
-                }
-                break;
-            default:
-                break;
-        }
-    }
-	
 	// Update is called once per frame
 	void Update()
     {
@@ -67,16 +61,16 @@ public class PlayerMovement : MonoBehaviour {
         else
         {
             rigidbody2D.velocity = new Vector2(horizontalAxis * horizontalVelocity, 0);
+
         }
 
         // The jump key is down so we should jump
         if (jumpWanted)
         {
             // Make sure the character is on the ground before jumping
-            if (onGround)
+            if (surfaceDetector.IsTouchingGround())
             {
                 //Debug.Log("Character is on ground, so jump");
-                onGround = false;
                 jumpStarted = true;
                 jumpTimeLeft = baseJumpTime;
             }
@@ -97,6 +91,13 @@ public class PlayerMovement : MonoBehaviour {
                 //Debug.Log("Ended Jump");
                 jumpStarted = false;
             }
+        }
+
+        // Update the animator
+        if (animator)
+        {
+            animator.SetBool("Walking", horizontalAxis != 0);
+            animator.SetFloat("VelocityY", rigidbody2D.velocity.y);
         }
     }
 }
