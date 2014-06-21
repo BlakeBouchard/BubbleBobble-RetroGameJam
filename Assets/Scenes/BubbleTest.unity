@@ -117,7 +117,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shaker: {fileID: 1324742569}
   _sprite: {fileID: 2100765308}
-  _renderer: {fileID: 2100765309}
+  _renderer: {fileID: 0}
+  _animator: {fileID: 2100765311}
 --- !u!4 &1324742571
 Transform:
   m_ObjectHideFlags: 0
@@ -223,8 +224,9 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 2100765308}
-  - 212: {fileID: 2100765309}
   - 58: {fileID: 2100765310}
+  - 95: {fileID: 2100765311}
+  - 212: {fileID: 2100765309}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -239,7 +241,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2100765307}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: .0299791228, y: -.0389729217, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1324742571}
@@ -256,7 +258,7 @@ SpriteRenderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 944e74400bbecc247b1294399d053a59, type: 2}
+  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -264,7 +266,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e08561427f9fea74c8f186191c1df97f, type: 3}
+  m_Sprite: {fileID: 21300070, guid: 38b3408aa57db3649936ab520981b1f1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!58 &2100765310
 CircleCollider2D:
@@ -277,3 +279,17 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_Radius: .25
   m_Center: {x: -.00499999989, y: .0149999997}
+--- !u!95 &2100765311
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2100765307}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: dbe2555ae75c1ac47835c3ed3d05753b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_HasTransformHierarchy: 1

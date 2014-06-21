@@ -13,7 +13,7 @@ public class Bubble : MonoBehaviour
 	void Start () 
     {
         CreateStateMachine();
-        TransitionTo(AboutTopPop);
+        TransitionTo(Shoot);
 	}
 	
 	// Update is called once per frame
@@ -38,14 +38,30 @@ public class Bubble : MonoBehaviour
     #endregion
 
     #region Statemachine
-    private void BeginShot()
+    private void BeginShoot()
     {
-
+        _animator.SetTrigger("Pop");
     }
 
-    private void ShotState(float deltaTime)
+    private void RunShoot(float deltaTime)
     {
+        //AnimatorStateInfo info = _animator.GetCurrentAnimatorStateInfo(0);
+    }
 
+    private void BeginRise()
+    {
+    }
+    
+    private void RunRise(float deltaTime)
+    {
+    }
+
+    private void BeginFall()
+    {
+    }
+
+    private void RunFall(float deltaTime)
+    {
     }
 
     private void BeginShakeState()
@@ -53,7 +69,7 @@ public class Bubble : MonoBehaviour
         _shaker.Reset();
     }
 
-    private void ShakeState(float deltaTime)
+    private void RunShake(float deltaTime)
     {
         ApplyShake();
     }
@@ -63,20 +79,29 @@ public class Bubble : MonoBehaviour
         _renderer.color = ABOUT_TO_POP_COLOR;
     }
 
-    private void AboutToPopState(float deltaTime)
+    private void RunAboutToPop(float deltaTime)
     {
         ApplyShake();
     }
 
-    private void CreateStateMachine()
+    private void BeginPop()
     {
-        Shot = new State(BeginShot, ShotState, null);
-        Shake = new State(BeginShakeState, ShakeState, null);
-        AboutTopPop = new State(BeginAboutToPopState, AboutToPopState, null);
+        _animator.SetBool("Pop", true);
     }
 
-    private State Shot;
-    private State FallDownFromSky;
+    private void CreateStateMachine()
+    {
+        Shoot = new State(BeginShoot, RunShoot, null);
+        Rise = new State(BeginRise, RunRise, null);
+        Fall = new State(BeginFall, RunFall, null);
+        Shake = new State(BeginShakeState, RunShake, null);
+        AboutTopPop = new State(BeginAboutToPopState, RunAboutToPop, null);
+        Pop = new State(BeginPop, null, null);
+    }
+
+    private State Shoot;
+    private State Rise;
+    private State Fall;
     private State Shake;
     private State AboutTopPop;
     private State Pop;
@@ -98,6 +123,8 @@ public class Bubble : MonoBehaviour
     private Transform _sprite;
     [SerializeField]
     private SpriteRenderer _renderer;
+    [SerializeField]
+    private Animator _animator;
 
     private bool _water; // Is it a water bubble.
 
@@ -108,8 +135,4 @@ public class Bubble : MonoBehaviour
     private Color BLUE_COLOR = Color.blue;
     private Color NEUTRAL_COLOR = Color.white;
     private Color ABOUT_TO_POP_COLOR = Color.red;
-
-
-
-
 }
