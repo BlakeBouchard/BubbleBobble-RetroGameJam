@@ -18,13 +18,13 @@ public class PlayerShootBubbles : MonoBehaviour {
     // Create a bubble object at the character
     private void ShootBubble()
     {
-        Debug.Log("Shooting bubble");
         if (bubblePrefab)
         {
             Transform bubbleObject = Instantiate(bubblePrefab, transform.position, Quaternion.identity) as Transform;
             bubbleObject.name = bubblePrefab.name;
             Bubble bubble = bubbleObject.GetComponent<Bubble>();
-            bubble.Initialize(new Vector3(1.0f, 0.0f, 0.0f));
+            Vector3 direction = new Vector3(_movement.IsFacingLeft()?-1.0f:1.0f, 0.0f, 0.0f);
+            bubble.Initialize(direction);
         }
 
         if (animator)
@@ -46,4 +46,7 @@ public class PlayerShootBubbles : MonoBehaviour {
             timeUntilNextShot -= Time.deltaTime;
         }
 	}
+
+    [SerializeField]
+    private PlayerMovement _movement;
 }

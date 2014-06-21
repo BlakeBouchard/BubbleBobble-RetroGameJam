@@ -1,12 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
 using core;
+using System.Collections.Generic;
 
 public class Bubble : MonoBehaviour 
 {
-    public static void ShootBubble(Vector3 direction)
+    void OnTriggerEnter2D(Collider2D collider)
     {
-
+        switch (collider.gameObject.tag)
+        {
+            case Tags.Ground:
+                Debug.Log("Collide Ground");
+                _groundColliders.Add(collider);
+                break;
+        }
     }
 
 	// Use this for initialization
@@ -31,6 +38,9 @@ public class Bubble : MonoBehaviour
         {
             _currentState.Run(Time.deltaTime);
         }
+
+        _groundColliders.Clear();
+        _popDetector.Clear();
 	}
 
     #region StatemachineAPI
@@ -53,7 +63,13 @@ public class Bubble : MonoBehaviour
     private void RunShoot(float deltaTime)
     {
         Move(_shootDirection, SHOOT_SPEED, deltaTime);
-        if (IsAnimationCompleted("Shoot"))
+        if ( DetectEnemy() )
+        {
+            _enemyTrapped = true;
+            _animator.SetTrigger("EnemyKeyTrapped");
+            TransitionTo(Rise);
+        }
+        else if (IsAnimationCompleted("Shoot") || _groundColliders.Count > 0)
         {
             TransitionTo(Rise);
         }
@@ -69,7 +85,11 @@ public class Bubble : MonoBehaviour
         Move(Vector3.up, RISE_SPEED, deltaTime);
         ClampPositionY(MAX_RISE_Y);
         _riseTimer += deltaTime;
-        if (_riseTimer > RISE_TIME)
+        if (DetectPop())
+        {
+            TransitionTo(Pop);
+        }
+        else if (_riseTimer > RISE_DURATION)
         {
             TransitionTo(Shake);
         }
@@ -93,7 +113,11 @@ public class Bubble : MonoBehaviour
     {
         ApplyShake();
         _shakeTimer += deltaTime;
-        if (_shakeTimer > RISE_TIME)
+        if (DetectPop())
+        {
+            TransitionTo(Pop);
+        }
+        else if (_shakeTimer > ShakeDuration)
         {
             TransitionTo(AboutTopPop);
         }
@@ -108,7 +132,7 @@ public class Bubble : MonoBehaviour
     {
         ApplyShake();
         _aboutToPopTimer += deltaTime;
-        if (_aboutToPopTimer > RISE_TIME)
+        if (DetectPop() || _aboutToPopTimer > AboutToPopDuration )
         {
             TransitionTo(Pop);
         }
@@ -144,6 +168,7 @@ public class Bubble : MonoBehaviour
     }
 
     private State Shoot;
+    private State TrapEnemy;
     private State Rise;
     private State Fall;
     private State Shake;
@@ -182,6 +207,26 @@ public class Bubble : MonoBehaviour
         transform.position = position;
     }
 
+    private bool DetectPop()
+    {
+        return _popDetector.HasDetected;
+    }
+
+    private bool DetectEnemy()
+    {
+        return _enemyDetector.HasDetected;
+    }
+
+    private float ShakeDuration
+    {
+        get { return _enemyTrapped ? SHAKE_TRAPPED_ENEMY_DURATION : SHAKE_DURATION; }
+    }
+
+    private float AboutToPopDuration
+    {
+        get { return _enemyTrapped ? ABOUT_TO_POP_TRAPPED_ENEMY_DURATION : ABOUT_TO_POP_DURATION; }
+    }
+
     [SerializeField]
     private Shaker _shaker;
     [SerializeField]
@@ -190,17 +235,23 @@ public class Bubble : MonoBehaviour
     private SpriteRenderer _renderer;
     [SerializeField]
     private Animator _animator;
+    [SerializeField]
+    private TagDetector _popDetector;
+    [SerializeField]
+    private TagDetector _enemyDetector;
 
     [SerializeField]
     private float _currentAnimationTime;
 
-    private bool _water; // Is it a water bubble.
     private Vector3 _shootDirection = new Vector3(1.0f, 0.0f, 0.0f);
 
     private State _currentState;
     private float _riseTimer;
     private float _shakeTimer;
     private float _aboutToPopTimer;
+    private List<Collider2D> _playerColliders = new List<Collider2D>();
+    private List<Collider2D> _groundColliders = new List<Collider2D>();
+    private bool _enemyTrapped;
 
     // Constants
     [SerializeField]
@@ -218,5 +269,13 @@ public class Bubble : MonoBehaviour
     [SerializeField]
     private float MAX_RISE_Y = 1.8f;
     [SerializeField]
-    private float RISE_TIME = 10.0f;
+    private float RISE_DURATION = 10.0f;
+    [SerializeField]
+    private float SHAKE_DURATION = 5.0f;
+    [SerializeField]
+    private float SHAKE_TRAPPED_ENEMY_DURATION = 10.0f;
+    [SerializeField]
+    private float ABOUT_TO_POP_DURATION = 5.0f;
+    [SerializeField]
+    private float ABOUT_TO_POP_TRAPPED_ENEMY_DURATION = 10.0f;
 }

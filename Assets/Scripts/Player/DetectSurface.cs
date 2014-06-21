@@ -3,7 +3,7 @@ using System.Collections;
 
 public class DetectSurface : MonoBehaviour {
     
-    private bool onGround = false;
+    public bool onGround = false;
 
 	// Use this for initialization
 	void Start()
@@ -20,7 +20,7 @@ public class DetectSurface : MonoBehaviour {
     {
         switch (collider.tag)
         {
-            case "Ground":
+            case Tags.Ground:
                 if (!onGround)
                 {
                     onGround = true;
@@ -29,11 +29,11 @@ public class DetectSurface : MonoBehaviour {
         }
     }
 
-    void OnTrigger2D(Collider2D collider)
+    void OnTriggerStay2D(Collider2D collider)
     {
         switch (collider.tag)
         {
-            case "Ground":
+            case Tags.Ground:
                 if (!onGround)
                 {
                     onGround = true;
@@ -46,7 +46,7 @@ public class DetectSurface : MonoBehaviour {
     {
         switch (collider.tag)
         {
-            case "Ground":
+            case Tags.Ground:
                 if (onGround)
                 {
                     onGround = false;
