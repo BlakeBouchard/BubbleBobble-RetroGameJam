@@ -33,6 +33,16 @@ public class PlayerMovement : MonoBehaviour {
         }
 	}
 
+    private void Flip()
+    {
+        transform.Rotate(new Vector3(0, 180, 0));
+    }
+
+    public bool IsFacingLeft()
+    {
+        return facingLeft;
+    }
+
 	// Update is called once per frame
 	void Update()
     {
@@ -53,6 +63,17 @@ public class PlayerMovement : MonoBehaviour {
 
     void FixedUpdate()
     {
+        if (facingLeft && horizontalAxis > 0)
+        {
+            facingLeft = false;
+            Flip();
+        }
+        else if (!facingLeft && horizontalAxis < 0)
+        {
+            facingLeft = true;
+            Flip();
+        }
+
         // If movement is force based, add horizontal force, otherwise, set horizontal velocity
         if (forceBased)
         {
@@ -61,7 +82,6 @@ public class PlayerMovement : MonoBehaviour {
         else
         {
             rigidbody2D.velocity = new Vector2(horizontalAxis * horizontalVelocity, 0);
-
         }
 
         // The jump key is down so we should jump
