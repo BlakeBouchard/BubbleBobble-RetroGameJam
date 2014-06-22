@@ -15,14 +15,14 @@ public class Enemy : MonoBehaviour {
 
     private void Flip()
     {
-        transform.Rotate(new Vector3(0, 180, 0));
+        transform.localScale.Scale(-1, 1, 1);
         facingLeft = !facingLeft;
+        Debug.Log("Facing left is now " + facingLeft + " and X Scale is " + transform.localScale.x);
     }
 
     public void HitWall()
     {
         Debug.Log("Villain hit wall, should now flip");
-        Debug.Log("Facing left is " + facingLeft + " and Rotation is " + transform.rotation.y);
         Flip();
     }
 
