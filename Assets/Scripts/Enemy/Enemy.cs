@@ -55,4 +55,12 @@ public class Enemy : MonoBehaviour {
     {
 	
 	}
+
+    public UnityEngine.Object Prefab
+    {
+        get { return _prefab; }
+    }
+
+    [SerializeField]
+    private UnityEngine.Object _prefab;
 }

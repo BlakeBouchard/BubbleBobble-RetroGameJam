@@ -65,13 +65,27 @@ public class Bubble : MonoBehaviour
         Move(_shootDirection, SHOOT_SPEED, deltaTime);
         if ( DetectEnemy() )
         {
-            _enemyTrapped = true;
-            _animator.SetTrigger("EnemyKeyTrapped");
+            TrapEnemy();
             TransitionTo(Rise);
         }
         else if (IsAnimationCompleted("Shoot") || _groundColliders.Count > 0)
         {
             TransitionTo(Rise);
+        }
+    }
+
+    private void TrapEnemy()
+    {
+        _animator.SetTrigger("EnemyKeyTrapped");
+        if ( _enemyDetector.Detectees.Count > 0 )
+        {
+            GameObject obj = _enemyDetector.Detectees[0].gameObject;
+            Enemy enemy = obj.GetComponent<Enemy>();
+            if ( enemy != null)
+            {
+                _enemyPrefab = enemy.Prefab;
+                GameObject.Destroy(obj);
+            }
         }
     }
 
@@ -132,8 +146,16 @@ public class Bubble : MonoBehaviour
     {
         ApplyShake();
         _aboutToPopTimer += deltaTime;
-        if (DetectPop() || _aboutToPopTimer > AboutToPopDuration )
+        if (DetectPop() )
         {
+            TransitionTo(Pop);
+        }
+        else if (_aboutToPopTimer > AboutToPopDuration)
+        {
+            if (EnemyTrapped)
+            {
+                Instantiate(_enemyPrefab, transform.position, Quaternion.identity);
+            }
             TransitionTo(Pop);
         }
     }
@@ -168,7 +190,6 @@ public class Bubble : MonoBehaviour
     }
 
     private State Shoot;
-    private State TrapEnemy;
     private State Rise;
     private State Fall;
     private State Shake;
@@ -214,17 +235,21 @@ public class Bubble : MonoBehaviour
 
     private bool DetectEnemy()
     {
+        if (_enemyDetector.HasDetected)
+        {
+            Debug.Log("HasDetected enemy");
+        }
         return _enemyDetector.HasDetected;
     }
 
     private float ShakeDuration
     {
-        get { return _enemyTrapped ? SHAKE_TRAPPED_ENEMY_DURATION : SHAKE_DURATION; }
+        get { return EnemyTrapped ? SHAKE_TRAPPED_ENEMY_DURATION : SHAKE_DURATION; }
     }
 
     private float AboutToPopDuration
     {
-        get { return _enemyTrapped ? ABOUT_TO_POP_TRAPPED_ENEMY_DURATION : ABOUT_TO_POP_DURATION; }
+        get { return EnemyTrapped ? ABOUT_TO_POP_TRAPPED_ENEMY_DURATION : ABOUT_TO_POP_DURATION; }
     }
 
     [SerializeField]
@@ -249,9 +274,12 @@ public class Bubble : MonoBehaviour
     private float _riseTimer;
     private float _shakeTimer;
     private float _aboutToPopTimer;
-    private List<Collider2D> _playerColliders = new List<Collider2D>();
     private List<Collider2D> _groundColliders = new List<Collider2D>();
-    private bool _enemyTrapped;
+    private bool EnemyTrapped
+    {
+        get { return _enemyPrefab != null; }
+    }
+    private UnityEngine.Object _enemyPrefab;
 
     // Constants
     [SerializeField]

@@ -35,6 +35,7 @@ public class TagDetector : MonoBehaviour
     {
         if (collider.gameObject.tag == _tag)
         {
+            Debug.Log("Add " + _tag);
             _colliders.Add(collider);
         }
     }
