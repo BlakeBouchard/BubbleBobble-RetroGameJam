@@ -130,9 +130,13 @@ public class PlayerMovement : MonoBehaviour {
             {
                 animator.SetFloat("VelocityY", 0);
             }
+            else if (jumpStarted)
+            {
+                animator.SetFloat("VelocityY", 1.0f);
+            }
             else
             {
-                animator.SetFloat("VelocityY", rigidbody2D.velocity.y);
+                animator.SetFloat("VelocityY", -1.0f);
             }
         }
     }
