@@ -50,6 +50,7 @@ public class PlayerMovement : MonoBehaviour {
         {
             Debug.Log("You died!");
             Destroy(gameObject);
+            Application.LoadLevel(Application.loadedLevel);
         }
     }
 
