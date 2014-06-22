@@ -35,7 +35,8 @@ public class PlayerMovement : MonoBehaviour {
 
     private void Flip()
     {
-        transform.Rotate(new Vector3(0, 180, 0));
+        transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+        facingLeft = !facingLeft;
     }
 
     public bool IsFacingLeft()
@@ -65,12 +66,10 @@ public class PlayerMovement : MonoBehaviour {
     {
         if (facingLeft && horizontalAxis > 0)
         {
-            facingLeft = false;
             Flip();
         }
         else if (!facingLeft && horizontalAxis < 0)
         {
-            facingLeft = true;
             Flip();
         }
 
