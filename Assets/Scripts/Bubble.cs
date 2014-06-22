@@ -10,7 +10,6 @@ public class Bubble : MonoBehaviour
         switch (collider.gameObject.tag)
         {
             case Tags.Ground:
-                Debug.Log("Collide Ground");
                 _groundColliders.Add(collider);
                 break;
         }
@@ -76,7 +75,6 @@ public class Bubble : MonoBehaviour
 
     private void TrapEnemy()
     {
-        _animator.SetTrigger("EnemyKeyTrapped");
         if ( _enemyDetector.Detectees.Count > 0 )
         {
             GameObject obj = _enemyDetector.Detectees[0].gameObject;
@@ -92,6 +90,10 @@ public class Bubble : MonoBehaviour
     private void BeginRise()
     {
         _riseTimer = 0.0f;
+        if (EnemyTrapped)
+        {
+            _animator.SetTrigger("EnemyKeyTrapped");
+        }
     }
     
     private void RunRise(float deltaTime)
@@ -235,10 +237,6 @@ public class Bubble : MonoBehaviour
 
     private bool DetectEnemy()
     {
-        if (_enemyDetector.HasDetected)
-        {
-            Debug.Log("HasDetected enemy");
-        }
         return _enemyDetector.HasDetected;
     }
 
