@@ -15,7 +15,7 @@ public class Enemy : MonoBehaviour {
 
     private void Flip()
     {
-        transform.localScale.Scale(-1, 1, 1);
+        //transform.localScale.Scale(-1, 1, 1);
         facingLeft = !facingLeft;
         Debug.Log("Facing left is now " + facingLeft + " and X Scale is " + transform.localScale.x);
     }
