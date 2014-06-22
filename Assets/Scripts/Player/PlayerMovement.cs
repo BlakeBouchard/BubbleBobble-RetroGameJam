@@ -117,7 +117,14 @@ public class PlayerMovement : MonoBehaviour {
         if (animator)
         {
             animator.SetBool("Walking", horizontalAxis != 0);
-            animator.SetFloat("VelocityY", rigidbody2D.velocity.y);
+            if (surfaceDetector.IsTouchingGround())
+            {
+                animator.SetFloat("VelocityY", 0);
+            }
+            else
+            {
+                animator.SetFloat("VelocityY", rigidbody2D.velocity.y);
+            }
         }
     }
 }
