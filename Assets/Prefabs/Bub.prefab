@@ -151,7 +151,7 @@ Animator:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: fe49c327867e59240821f74691075479, type: 2}
+  m_Controller: {fileID: 9100000, guid: 00db197bf365e3b4eb0ffeae6f94f5fd, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -171,7 +171,7 @@ MonoBehaviour:
   horizontalVelocity: 10
   jumpForce: 2000
   jumpVelocity: 15
-  animator: {fileID: 0}
+  animator: {fileID: 9500000}
   baseJumpTime: .25
   forceBased: 0
 --- !u!114 &11400004
@@ -185,6 +185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02a1452e12e1d8347b43bba248018974, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onGround: 0
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
