@@ -44,6 +44,15 @@ public class PlayerMovement : MonoBehaviour {
         return facingLeft;
     }
 
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.tag == "Enemy")
+        {
+            Debug.Log("You died!");
+            Destroy(gameObject);
+        }
+    }
+
 	// Update is called once per frame
 	void Update()
     {
