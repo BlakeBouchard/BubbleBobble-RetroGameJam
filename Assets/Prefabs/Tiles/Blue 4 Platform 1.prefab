@@ -9,6 +9,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 400000}
   - 61: {fileID: 6100000}
+  - 61: {fileID: 6100002}
   m_Layer: 0
   m_Name: Blue 4 Platform 1
   m_TagString: Ground
@@ -87,7 +88,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.691629708, y: .943962991, z: 0}
+  m_LocalPosition: {x: -.691629708, y: .815506995, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400004}
@@ -155,6 +156,17 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_Size: {x: 1.278, y: .319999993}
   m_Center: {x: -.0109999999, y: 0}
+--- !u!61 &6100002
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Size: {x: 1.32000005, y: .340000004}
+  m_Center: {x: 0, y: -.0199999996}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
