@@ -15,20 +15,20 @@ public class Enemy : MonoBehaviour {
 
     private void Flip()
     {
-        //transform.localScale.Scale(-1, 1, 1);
+        transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
         facingLeft = !facingLeft;
-        Debug.Log("Facing left is now " + facingLeft + " and X Scale is " + transform.localScale.x);
+        //Debug.Log("Facing left is now " + facingLeft + " and X Scale is " + transform.localScale.x);
     }
 
     public void HitWall()
     {
-        Debug.Log("Villain hit wall, should now flip");
+        //Debug.Log("Villain hit wall, should now flip");
         Flip();
     }
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        Debug.Log(collider.name);
+        //Debug.Log(collider.name);
 
         switch (collider.tag)
         {
